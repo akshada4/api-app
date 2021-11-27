@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 const APP_DIR = path.resolve(__dirname, './src');
 const BUILD_DIR = path.resolve(__dirname, './dist')
@@ -7,12 +7,12 @@ const BUILD_DIR = path.resolve(__dirname, './dist')
 const configuration = {
 	entry: path.join(APP_DIR, '/index.js'),
 	mode: 'development',
-	ouput: {
+	output: {
         path: BUILD_DIR,
         filename: 'bundle.js',
         publicPath: '/'
     },
-    modules: {
+    module: {
         rules: [
             {
                 test: /\.(js|jsx)$/,
@@ -21,6 +21,11 @@ const configuration = {
             },
         ],
     },
+    plugins: [
+        new HTMLWebpackPlugin({
+            template: './src/index.html'
+        })
+    ],
 }
 
 module.exports = configuration
