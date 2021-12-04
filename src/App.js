@@ -1,9 +1,16 @@
 import React from 'react';
+import GetRequest from './components/GetRequest';
+import RequestHoc from './components/RequestHoc';
 
-const App = () => (
+const GetRequestComponent = RequestHoc(GetRequest)
+class App extends React.Component {
+    render() {
+    return (
     <div>
         <h1>API</h1>
-    </div>
-)
+        <GetRequestComponent />
+    </div>)
+    }
+}
 
 export default App
