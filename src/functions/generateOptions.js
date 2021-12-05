@@ -1,4 +1,5 @@
-export const generateOptions = ({method, authType, password, username, token, contentType, url }) => {
+export const generateOptions = ({method, authType, password, username, token, contentType='', url, body='' }) => {
+    const apiBody = (method === 'POST') && { body: body }
     let apiHeaders = {}
 
     if (authType === 'bearerToken' && token)
@@ -10,8 +11,12 @@ export const generateOptions = ({method, authType, password, username, token, co
         case 'GET': {
             apiHeaders.Accept = '*/*'
         }
+        case 'POST': {
+            apiHeaders['Content-Type'] = contentType
+            apiHeaders['Content-Length'] = body.length
+        }
     }
-    
+
     const options = {
         method: 'POST',
         mode: 'cors',
@@ -22,7 +27,8 @@ export const generateOptions = ({method, authType, password, username, token, co
             url: url,
             options: {
                 method: method,
-                headers: apiHeaders
+                headers: apiHeaders,
+                ...apiBody
             }
         })
     }
