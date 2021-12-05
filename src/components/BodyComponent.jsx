@@ -9,8 +9,9 @@ const BodyComponent = ({ setBody, body, contentType, setContentType }) => {
                     value="Application/json"
                     onChange={setContentType}
                     checked={contentType === "Application/json"}
+                    id="contentType"
                 />
-                <label>Application/json</label>
+                <label htmlFor="contentType">Application/json</label>
             </div>
             <textarea
                 style={{ resize: "none" }}

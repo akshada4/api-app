@@ -10,10 +10,12 @@ export const generateOptions = ({method, authType, password, username, token, co
     switch(method){
         case 'GET': {
             apiHeaders.Accept = '*/*'
+            break;
         }
         case 'POST': {
             apiHeaders['Content-Type'] = contentType
             apiHeaders['Content-Length'] = body.length
+            break;
         }
     }
 
