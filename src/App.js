@@ -5,15 +5,15 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            method: 'GET',
-            response: '',
-            url: '',
-            authType: "bearerToken",
-            username: '',
-            password: '',
-            token: '',
-            body: '',
-            contentType: 'Application/json'
+            method: localStorage.getItem('method') || 'GET',
+            response: localStorage.getItem('response') || '',
+            url: localStorage.getItem('url')  || '',
+            authType: localStorage.getItem('authType') || "bearerToken",
+            username: localStorage.getItem('username') || '',
+            password: localStorage.getItem('password')  || '',
+            token: localStorage.getItem('token') || '',
+            body: localStorage.getItem('body')  || '',
+            contentType: localStorage.getItem('contentType') || 'Application/json'
         }
     }
 
@@ -28,6 +28,10 @@ class App extends React.Component {
             .then(data => { return data })
 
         this.setState({ response: JSON.stringify(response) })
+    }
+
+    populateLocalStorage = () => {
+        Object.keys(this.state).forEach(i => localStorage.setItem(i,this.state[i]))
     }
 
     render() {
@@ -59,6 +63,8 @@ class App extends React.Component {
                             >
                                 <option value="GET">GET</option>
                                 <option value="POST">POST</option>
+                                <option value="PUT">PUT</option>
+                                <option value="DELETE">DELETE</option>
                             </select>
                             <div
                                 style={{
@@ -70,6 +76,7 @@ class App extends React.Component {
                                 <label>URL:</label>
                                 <input
                                     onChange={this.setURL}
+                                    value={this.state.url}
                                     style={{
                                         border: 'none',
                                         outline: 'none',
@@ -80,7 +87,9 @@ class App extends React.Component {
                                 />
                             </div>
                             <button
-                                onClick={this.onSubmit}
+                                onClick={async () => {
+                                    await this.onSubmit()
+                                    this.populateLocalStorage() }}
                                 style={{
                                     padding: "0.5rem"
                                 }}
@@ -108,7 +117,6 @@ class App extends React.Component {
                             display: "flex",
                             flexDirection: "column",
                             flex: "0 0 49%",
-                            
                         }}>
                             <label style={{ marginBottom: "0.5rem", marginTop: "5rem" }}>Response</label>
                             <textarea value={this.state.response} style={{ resize: "none", height: "100%"}} readOnly />

@@ -35,7 +35,7 @@ const AuthComponent = ({ setToken, setUsername, setPassword, token, username, pa
                     <BasicAuth
                         onChangeUsername={setUsername}
                         onChangePassword={setPassword}
-                        passowrd={password}
+                        password={password}
                         username={username}
                     />}
             </div>
