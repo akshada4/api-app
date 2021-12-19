@@ -20,12 +20,16 @@ class App extends React.Component {
     setMethod = e => this.setState({ method: e.target.value })
     setURL = e => this.setState({ url: e.target.value })
 
+    getResponse = (options) => {
+        return fetch('http://localhost:3000', options)
+            .then(res => res.json())
+            .then(data => data)
+            .catch(err => err)
+    }
+
     onSubmit = async () => {
         const options = generateOptions(this.state)
-
-        const response = await fetch('http://localhost:3000', options)
-            .then(res => res.json())
-            .then(data => { return data })
+        const response = await this.getResponse(options)
 
         this.setState({ response: JSON.stringify(response) })
     }

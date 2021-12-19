@@ -1,7 +1,6 @@
 import React from 'react';
 
 const BasicAuth = ({ onChangeUsername, onChangePassword, password, username }) => {
-    console.log(password)
     return (
         <div
             style={{

@@ -2,7 +2,7 @@ import { Buffer } from 'buffer'
 
 export const generateOptions = ({method, authType, password, username, token, contentType='', url, body='' }) => {
     const apiBody = (method === 'POST') && { body: body }
-    let apiHeaders = {}
+    const apiHeaders = {}
 
     if (authType === 'bearerToken' && token)
         apiHeaders.Authorization = `Bearer ${token.trim()}`
