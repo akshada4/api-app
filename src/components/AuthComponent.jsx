@@ -2,7 +2,7 @@ import React from 'react';
 import BasicAuth from './authComponents/BasicAuth';
 import BearerToken from './authComponents/BearerToken';
 
-function AuthComponent ({ setToken, setUsername, setPassword, token, username, password, authType, setAuthType }) {
+function AuthComponent({ setToken, setUsername, setPassword, token, username, password, authType, setAuthType }) {
     return (
         <>
             <div

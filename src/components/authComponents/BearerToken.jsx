@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BearerToken ({ onChange, token }) {
+function BearerToken({ onChange, token }) {
     return (
         <div>
             <label htmlFor="token" style={{ marginRight: "0.25rem" }}>Token</label>
