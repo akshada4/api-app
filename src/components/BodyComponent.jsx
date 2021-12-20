@@ -1,6 +1,6 @@
 import React from "react";
 
-const BodyComponent = ({ setBody, body, contentType, setContentType }) => {
+function BodyComponent ({ setBody, body, contentType, setContentType }) {
     return (
         <>
             <div>

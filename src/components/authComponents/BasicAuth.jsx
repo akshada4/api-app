@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BasicAuth = ({ onChangeUsername, onChangePassword, password, username }) => {
+function BasicAuth ({ onChangeUsername, onChangePassword, password, username }) {
     return (
         <div
             style={{
